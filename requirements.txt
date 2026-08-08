@@ -17,7 +17,7 @@ tkinterdnd2>=0.3.0
 pillow>=10.0.0
 google-generativeai
 
-# Legacy TinyRag vector stores & utilities
+# Legacy vector stores & utilities
 faiss-cpu
 scikit-learn
 pdfminer.six>=20221105

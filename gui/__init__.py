@@ -1,5 +1,5 @@
 """
-GUI package for TinyRAG Desktop application.
+GUI package for AssignRAG Desktop application.
 """
 
 from .theme import Theme

@@ -1,9 +1,9 @@
 """
-TinyRag - A minimal Retrieval-Augmented Generation library
+Rag - A minimal Retrieval-Augmented Generation library
 """
 
 from .provider import Provider
-from .tinyrag import TinyRag
+from .rag_engine import RagEngine
 
-__version__ = "1.0.0"
-__all__ = ["Provider", "TinyRag"]
+__version__ = "2.0.0"
+__all__ = ["Provider", "RagEngine"]

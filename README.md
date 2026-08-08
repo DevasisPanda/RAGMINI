@@ -1,10 +1,10 @@
-# TinyRAG Desktop v2.0 — Local PDF Question Answering & Comparison System
+# AssignRAG Desktop v2.0 — Local PDF Question Answering & Comparison System
 
 **Author**: Devasis Panda (<devasis.stu.work@gmail.com>)  
 **GitHub**: [@DevasisPanda](https://github.com/DevasisPanda)  
 **License**: MIT  
 
-A modern, high-performance local Python desktop application built on top of **TinyRAG**, **FastEmbed**, **Qdrant Cloud**, and **CustomTkinter**. It provides intelligent PDF document question answering, page-level citation tracking, automatic LLM failover (OpenRouter $\rightarrow$ Google Gemini), and intelligent multi-document comparison retrieval.
+A modern, high-performance local Python desktop application built on top of **AssignRAG**, **FastEmbed**, **Qdrant Cloud**, and **CustomTkinter**. It provides intelligent PDF document question answering, page-level citation tracking, automatic LLM failover (OpenRouter $\rightarrow$ Google Gemini), and intelligent multi-document comparison retrieval.
 
 ---
 
@@ -70,8 +70,8 @@ A modern, high-performance local Python desktop application built on top of **Ti
 Clone the repository and install requirements:
 
 ```bash
-git clone https://github.com/DevasisPanda/TinyRag.git
-cd TinyRag
+git clone https://github.com/DevasisPanda/assignRag.git
+cd assignRag
 pip install -r requirements.txt
 ```
 

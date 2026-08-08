@@ -1,15 +1,15 @@
 """
-Multithreading example for TinyRag
+Multithreading example for AssignRAG
 """
 
-from Rag import TinyRag
+from Rag import RagEngine
 import time
 
 def main():
-    print("=== TinyRag Multithreading Example ===\n")
+    print("=== AssignRAG Multithreading Example ===\n")
     
-    # Initialize TinyRag without provider (uses default all-MiniLM-L6-v2)
-    rag = TinyRag(
+    # Initialize RagEngine without provider (uses default all-MiniLM-L6-v2)
+    rag = RagEngine(
         vector_store="memory",  # Fast for demo
         max_workers=4  # Use 4 threads for processing
     )

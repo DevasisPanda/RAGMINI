@@ -84,7 +84,7 @@ Changelog = "https://github.com/DevasisPanda/assignRag/blob/main/CHANGELOG.md"
 packages = ["Rag", "Rag.core", "Rag.vector_stores"]
 
 [tool.setuptools.package-data]
-tinyrag = ["py.typed"]
+Rag = ["py.typed"]
 
 [tool.black]
 line-length = 88

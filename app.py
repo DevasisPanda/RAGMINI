@@ -1,5 +1,5 @@
 """
-TinyRAG Desktop Application — GUI Entry Point.
+AssignRAG Desktop Application — GUI Entry Point.
 
 Usage: python app.py
 """
@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 
 def main() -> None:
-    """Launch the TinyRAG Desktop GUI application."""
+    """Launch the AssignRAG Desktop GUI application."""
     settings = Settings()
 
     if not settings.openrouter_api_key or settings.openrouter_api_key == "your-openrouter-api-key-here":
@@ -36,7 +36,7 @@ def main() -> None:
     controller = BackendController(settings)
     app = MainWindow(controller)
 
-    logger.info("Starting TinyRAG Desktop GUI application...")
+    logger.info("Starting AssignRAG Desktop GUI application...")
     app.mainloop()
 
 

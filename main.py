@@ -13,7 +13,7 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 from config import Settings
-from Rag import Provider, TinyRag, QueryResult
+from Rag import Provider, RagEngine, QueryResult
 
 logging.basicConfig(
     level=logging.INFO,
@@ -65,8 +65,8 @@ def main() -> None:
     if settings.qdrant_api_key:
         qdrant_config["api_key"] = settings.qdrant_api_key
 
-    # Initialize TinyRag with Qdrant store
-    rag = TinyRag(
+    # Initialize RAG engine with Qdrant store
+    rag = RagEngine(
         provider=provider,
         vector_store="qdrant",
         chunk_size=settings.chunk_size,

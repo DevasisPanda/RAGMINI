@@ -101,8 +101,8 @@ class ProviderManager:
         headers = {
             "Authorization": f"Bearer {config.api_key}",
             "Content-Type": "application/json",
-            "HTTP-Referer": "https://github.com/tinyrag",
-            "X-Title": "TinyRAG Desktop Application"
+            "HTTP-Referer": "https://github.com/DevasisPanda/assignRag",
+            "X-Title": "AssignRAG Desktop Application"
         }
 
         payload = {

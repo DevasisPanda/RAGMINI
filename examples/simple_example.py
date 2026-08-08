@@ -1,7 +1,7 @@
-from Rag import Provider, TinyRag
+from Rag import Provider, RagEngine
 
 # Example 1: Basic usage without LLM (no API key needed)
-rag = TinyRag()  # Uses default all-MiniLM-L6-v2 embeddings
+rag = RagEngine()  # Uses default all-MiniLM-L6-v2 embeddings
 
 # Add multiple documents with multithreading
 rag.add_documents([
@@ -33,7 +33,7 @@ provider = Provider(
     base_url="https://api.openai.com/v1"
 )
 
-rag_with_llm = TinyRag(provider=provider, vector_store="faiss", max_workers=4)
+rag_with_llm = RagEngine(provider=provider, vector_store="faiss", max_workers=4)
 
 rag_with_llm.add_documents([
     "path/to/docs_or_raw_text",

@@ -1,8 +1,8 @@
 """
-Codebase indexing example for TinyRag
+Codebase indexing example for AssignRAG
 """
 
-from Rag import TinyRag
+from Rag import RagEngine
 import tempfile
 import os
 
@@ -100,14 +100,14 @@ public class DatabaseManager {
     return temp_dir
 
 def main():
-    print("=== TinyRag Codebase Indexing Example ===\n")
+    print("=== AssignRAG Codebase Indexing Example ===\n")
     
     # Create sample code files
     code_dir = create_sample_code_files()
     print(f"Created sample code files in: {code_dir}")
     
-    # Initialize TinyRag
-    rag = TinyRag(vector_store="memory", max_workers=2)
+    # Initialize RagEngine
+    rag = RagEngine(vector_store="memory", max_workers=2)
     
     # Index the codebase
     print("\n=== Indexing Codebase ===")

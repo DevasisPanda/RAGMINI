@@ -1,5 +1,5 @@
 """
-Backend Controller providing a thread-safe bridge between the GUI and the TinyRag engine.
+Backend Controller providing a thread-safe bridge between the GUI and the RAG engine.
 """
 
 import queue
@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import List, Callable, Any, Optional, Tuple
 
 from config import Settings
-from Rag import Provider, TinyRag, QueryResult
+from Rag import Provider, RagEngine, QueryResult
 from .provider_manager import ProviderManager
 from .file_manager import FileManager
 
@@ -17,14 +17,14 @@ logger = logging.getLogger(__name__)
 
 
 class BackendController:
-    """Orchestrates TinyRag operations on background threads with queue-based UI updates."""
+    """Orchestrates RAG operations on background threads with queue-based UI updates."""
 
     def __init__(self, settings: Settings):
         self.settings = settings
         self.file_manager = FileManager()
         self.provider_manager = ProviderManager(settings)
         self.message_queue: queue.Queue = queue.Queue()
-        self._rag: Optional[TinyRag] = None
+        self._rag: Optional[RagEngine] = None
         self._is_busy: bool = False
         self._lock = threading.Lock()
 
@@ -32,7 +32,7 @@ class BackendController:
         self._init_rag_engine()
 
     def _init_rag_engine(self) -> None:
-        """Initialize Provider and TinyRag instance."""
+        """Initialize Provider and RagEngine instance."""
         try:
             # Initialize provider pointing at OpenRouter / local embeddings
             provider = Provider(
@@ -54,8 +54,8 @@ class BackendController:
             if self.settings.qdrant_api_key:
                 qdrant_config["api_key"] = self.settings.qdrant_api_key
 
-            # Initialize TinyRag
-            self._rag = TinyRag(
+            # Initialize RagEngine
+            self._rag = RagEngine(
                 provider=provider,
                 vector_store="qdrant",
                 chunk_size=self.settings.chunk_size,
@@ -63,10 +63,10 @@ class BackendController:
                 vector_store_config=qdrant_config,
                 enable_cache=False,
             )
-            logger.info("[OK] TinyRag engine initialized successfully.")
+            logger.info("[OK] RAG engine initialized successfully.")
         except Exception as e:
-            logger.error(f"Failed to initialize TinyRag engine: {e}")
-            self.post_event("error", f"TinyRag Init Error: {e}")
+            logger.error(f"Failed to initialize RAG engine: {e}")
+            self.post_event("error", f"RAG Init Error: {e}")
 
     def is_busy(self) -> bool:
         """Check if a background operation is currently running."""

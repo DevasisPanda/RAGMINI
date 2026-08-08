@@ -1,5 +1,5 @@
 """
-Vector store implementations for TinyRag
+Vector store implementations for AssignRAG
 """
 
 from .base import BaseVectorStore

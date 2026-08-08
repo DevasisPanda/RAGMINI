@@ -38,7 +38,7 @@ class MainWindow(CTkWithDnD):
         self.controller = controller
 
         # Set window properties
-        self.title("TinyRAG Desktop v2.0 — Local PDF Question Answering System")
+        self.title("AssignRAG Desktop v2.0 — Local PDF Question Answering System")
         self.geometry("1100x760")
         self.minsize(960, 650)
         ctk.set_appearance_mode("dark")

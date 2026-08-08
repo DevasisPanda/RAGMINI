@@ -1,5 +1,5 @@
 """
-Centralized Theme & Design System tokens for TinyRAG Desktop GUI.
+Centralized Theme & Design System tokens for AssignRAG Desktop GUI.
 """
 
 

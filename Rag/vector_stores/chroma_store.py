@@ -9,7 +9,7 @@ from .base import BaseVectorStore
 
 
 class ChromaVectorStore(BaseVectorStore):
-    def __init__(self, dimension: int = 384, collection_name: str = "tinyrag_collection", persist_directory: Optional[str] = None):
+    def __init__(self, dimension: int = 384, collection_name: str = "rag_collection", persist_directory: Optional[str] = None):
         """Initialize ChromaDB vector store"""
         super().__init__(dimension)
         

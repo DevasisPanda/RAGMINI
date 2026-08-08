@@ -1,5 +1,5 @@
 """
-Controllers package for TinyRAG Desktop application.
+Controllers package for AssignRAG Desktop application.
 """
 
 from .file_manager import FileManager

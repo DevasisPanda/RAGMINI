@@ -1,5 +1,5 @@
 """
-Main TinyRag class for Retrieval-Augmented Generation with multi-provider support
+Main RagEngine class for Retrieval-Augmented Generation with multi-provider support
 """
 
 from typing import Union, List, Optional, Dict, Any, Tuple
@@ -22,7 +22,7 @@ from ..vector_stores import (
 )
 
 
-class TinyRag:
+class RagEngine:
     def __init__(
         self, 
         provider: Optional[Provider] = None, 
@@ -33,9 +33,9 @@ class TinyRag:
         max_workers: Optional[int] = None,
         system_prompt: Optional[str] = None,
         enable_cache: bool = False,
-        cache_dir: str = ".tinyrag_cache"
+        cache_dir: str = ".rag_cache"
     ):
-        """Initialize TinyRag with optional provider and vector store
+        """Initialize RagEngine with optional provider and vector store
         
         Args:
             provider: Optional Provider instance for API calls. If None, uses local embeddings
@@ -255,7 +255,7 @@ class TinyRag:
         if not self.provider.api_key:
             raise ValueError(
                 "No API key provided. Chat functionality requires an API key. "
-                "Initialize TinyRag with: Provider(api_key='your-key') or use query() method for similarity search only."
+                "Initialize RagEngine with: Provider(api_key='your-key') or use query() method for similarity search only."
             )
         
         # Generate embedding for the query

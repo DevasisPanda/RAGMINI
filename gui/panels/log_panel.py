@@ -85,7 +85,7 @@ class LogPanel(ctk.CTkFrame):
         self.textbox.grid(row=1, column=0, sticky="nsew", padx=Theme.PAD_MD, pady=(0, Theme.PAD_MD))
 
         # Initial greeting line
-        self.append_log(logging.INFO, "[INFO] TinyRAG Desktop Logging system initialized.")
+        self.append_log(logging.INFO, "[INFO] AssignRAG Desktop Logging system initialized.")
 
     def append_log(self, levelno: int, text: str) -> None:
         """Append a log line to the viewer with color tagging and auto-scroll."""

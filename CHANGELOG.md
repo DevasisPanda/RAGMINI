@@ -46,7 +46,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Environment variable integration for secure API key management
 
 ### Enhanced
-- **TinyRag Constructor**: New parameters for caching and multi-provider support
+- **AssignRAG Engine Constructor**: New parameters for caching and multi-provider support
   - `enable_cache` - Toggle intelligent document caching
   - `cache_dir` - Custom cache directory location
   - Enhanced provider integration with automatic configuration detection
@@ -140,9 +140,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.0] -  2025-08-21
 
 ### Added
-- Initial release of TinyRag
+- Initial release of AssignRAG Engine
 - Core Provider class for API management and embeddings
-- TinyRag class with document management and querying capabilities
+- AssignRAG Engine class with document management and querying capabilities
 - Multiple vector store backends:
   - Memory store (pure NumPy, no dependencies)
   - Faiss store (high-performance similarity search)
