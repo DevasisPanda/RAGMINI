@@ -1,0 +1,32 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment and secrets
+.env
+.env.local
+
+# Virtual environments
+env/
+venv/
+.venv/
+
+# Build and distribution artifacts
+*.egg-info/
+build/
+dist/
+
+# Cache directories
+.tinyrag_cache/
+.pytest_cache/
+
+# Local data & temporary scratch
+data/
+scratch/
+
+# IDE & system files
+.vscode/
+.idea/
+.DS_Store
+
