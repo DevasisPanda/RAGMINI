@@ -74,11 +74,11 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/DevasisPanda/assignRag"
-Documentation = "https://github.com/DevasisPanda/assignRag#readme"
-Repository = "https://github.com/DevasisPanda/assignRag.git"
-"Bug Tracker" = "https://github.com/DevasisPanda/assignRag/issues"
-Changelog = "https://github.com/DevasisPanda/assignRag/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/DevasisPanda/RAGMINI"
+Documentation = "https://github.com/DevasisPanda/RAGMINI#readme"
+Repository = "https://github.com/DevasisPanda/RAGMINI.git"
+"Bug Tracker" = "https://github.com/DevasisPanda/RAGMINI/issues"
+Changelog = "https://github.com/DevasisPanda/RAGMINI/blob/main/CHANGELOG.md"
 
 [tool.setuptools]
 packages = ["Rag", "Rag.core", "Rag.vector_stores"]

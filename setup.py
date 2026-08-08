@@ -14,11 +14,11 @@ setup(
     description="A minimal Python library for Retrieval-Augmented Generation with codebase indexing and multiple vector store backends",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/DevasisPanda/assignRag",
+    url="https://github.com/DevasisPanda/RAGMINI",
     project_urls={
-        "Bug Tracker": "https://github.com/DevasisPanda/assignRag/issues",
-        "Documentation": "https://github.com/DevasisPanda/assignRag#readme",
-        "Source Code": "https://github.com/DevasisPanda/assignRag",
+        "Bug Tracker": "https://github.com/DevasisPanda/RAGMINI/issues",
+        "Documentation": "https://github.com/DevasisPanda/RAGMINI#readme",
+        "Source Code": "https://github.com/DevasisPanda/RAGMINI",
     },
     packages=find_packages(),
     classifiers=[

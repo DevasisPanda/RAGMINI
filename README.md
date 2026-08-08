@@ -70,8 +70,8 @@ A modern, high-performance local Python desktop application built on top of **As
 Clone the repository and install requirements:
 
 ```bash
-git clone https://github.com/DevasisPanda/assignRag.git
-cd assignRag
+git clone https://github.com/DevasisPanda/RAGMINI.git
+cd RAGMINI
 pip install -r requirements.txt
 ```
 
