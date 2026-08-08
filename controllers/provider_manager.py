@@ -2,6 +2,7 @@
 Provider Manager providing LLM abstraction with automatic failover (OpenRouter -> Gemini).
 """
 
+import time
 import logging
 from dataclasses import dataclass
 from typing import List, Dict, Any, Optional, Tuple
@@ -111,18 +112,26 @@ class ProviderManager:
             "temperature": temperature
         }
 
-        response = requests.post(
-            f"{config.base_url}/chat/completions",
-            headers=headers,
-            json=payload,
-            timeout=60
-        )
+        max_attempts = 2
+        for attempt in range(max_attempts):
+            try:
+                response = requests.post(
+                    f"{config.base_url}/chat/completions",
+                    headers=headers,
+                    json=payload,
+                    timeout=60
+                )
 
-        if response.status_code == 200:
-            result = response.json()
-            return result["choices"][0]["message"]["content"]
-        else:
-            raise Exception(f"OpenRouter API error {response.status_code}: {response.text}")
+                if response.status_code == 200:
+                    result = response.json()
+                    return result["choices"][0]["message"]["content"]
+                else:
+                    raise Exception(f"OpenRouter API error {response.status_code}: {response.text}")
+            except (requests.exceptions.ConnectionError, requests.exceptions.Timeout) as e:
+                if attempt < max_attempts - 1:
+                    time.sleep(1)
+                    continue
+                raise e
 
     def _call_gemini(self, config: ProviderConfig, messages: List[Dict[str, str]], temperature: float) -> str:
         """Call Google Gemini API natively via REST endpoint."""
@@ -152,16 +161,24 @@ class ProviderManager:
         if system_instruction:
             payload["systemInstruction"] = {"parts": [{"text": system_instruction}]}
 
-        response = requests.post(url, headers=headers, json=payload, timeout=60)
-
-        if response.status_code == 200:
-            result = response.json()
+        max_attempts = 2
+        for attempt in range(max_attempts):
             try:
-                return result["candidates"][0]["content"]["parts"][0]["text"]
-            except (KeyError, IndexError):
-                return "The information is not available in the supplied documents."
-        else:
-            raise Exception(f"Gemini API error {response.status_code}: {response.text}")
+                response = requests.post(url, headers=headers, json=payload, timeout=60)
+
+                if response.status_code == 200:
+                    result = response.json()
+                    try:
+                        return result["candidates"][0]["content"]["parts"][0]["text"]
+                    except (KeyError, IndexError):
+                        return "The information is not available in the supplied documents."
+                else:
+                    raise Exception(f"Gemini API error {response.status_code}: {response.text}")
+            except (requests.exceptions.ConnectionError, requests.exceptions.Timeout) as e:
+                if attempt < max_attempts - 1:
+                    time.sleep(1)
+                    continue
+                raise e
 
     def _should_failover(self, exception: Exception) -> bool:
         """Determine if an error is transient and eligible for failover (429, timeout, 5xx)."""
@@ -173,3 +190,4 @@ class ProviderManager:
         if any(code in err_msg for code in ["500", "502", "503", "504"]):
             return True
         return False
+
