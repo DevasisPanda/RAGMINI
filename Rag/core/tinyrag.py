@@ -515,18 +515,16 @@ class TinyRag:
             has_insufficient_doc = False
 
             for disp_name, pattern in detected_docs:
-                doc_query = f"{query} {disp_name}"
-                doc_expanded = self._expand_query(doc_query)
-                queries_to_embed = [doc_query]
-                if doc_expanded != doc_query:
-                    queries_to_embed.append(doc_expanded)
+                doc_query = self._expand_query(disp_name)
+                combined_q = f"{query} {disp_name}"
+                queries_to_embed = [doc_query, combined_q]
 
                 embeddings = self.provider.get_embeddings(queries_to_embed)
                 primary_emb = embeddings[0]
 
-                raw_candidates = self.vector_store.search(primary_emb, k=25, return_metadata=True)
+                raw_candidates = self.vector_store.search(primary_emb, k=30, return_metadata=True)
                 if len(embeddings) > 1:
-                    exp_candidates = self.vector_store.search(embeddings[1], k=25, return_metadata=True)
+                    exp_candidates = self.vector_store.search(embeddings[1], k=30, return_metadata=True)
                     seen_texts = {}
                     for txt, sc, meta in raw_candidates + exp_candidates:
                         if txt not in seen_texts or sc > seen_texts[txt][1]:

@@ -9,7 +9,7 @@ from pathlib import Path
 from ..theme import Theme
 from ..widgets.animated_button import AnimatedButton
 from ..widgets.citation_card import CitationCard
-from tinyrag.core.models import QueryResult, Citation
+from Rag.core.models import QueryResult, Citation
 
 
 class ChatPanel(ctk.CTkFrame):

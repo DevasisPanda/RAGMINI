@@ -7,18 +7,18 @@ with open(os.path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name="tinyrag",
+    name="assignrag",
     version="0.3.0",
     author="Devasis Panda",
     author_email="devasis.stu.work@gmail.com",
     description="A minimal Python library for Retrieval-Augmented Generation with codebase indexing and multiple vector store backends",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/DevasisPanda/TinyRag",
+    url="https://github.com/DevasisPanda/assignRag",
     project_urls={
-        "Bug Tracker": "https://github.com/DevasisPanda/TinyRag/issues",
-        "Documentation": "https://github.com/DevasisPanda/TinyRag#readme",
-        "Source Code": "https://github.com/DevasisPanda/TinyRag",
+        "Bug Tracker": "https://github.com/DevasisPanda/assignRag/issues",
+        "Documentation": "https://github.com/DevasisPanda/assignRag#readme",
+        "Source Code": "https://github.com/DevasisPanda/assignRag",
     },
     packages=find_packages(),
     classifiers=[

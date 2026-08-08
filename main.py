@@ -13,7 +13,7 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 from config import Settings
-from tinyrag import Provider, TinyRag, QueryResult
+from Rag import Provider, TinyRag, QueryResult
 
 logging.basicConfig(
     level=logging.INFO,

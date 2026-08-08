@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import List, Callable, Any, Optional, Tuple
 
 from config import Settings
-from tinyrag import Provider, TinyRag, QueryResult
+from Rag import Provider, TinyRag, QueryResult
 from .provider_manager import ProviderManager
 from .file_manager import FileManager
 

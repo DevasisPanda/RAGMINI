@@ -2,7 +2,7 @@
 Multithreading example for TinyRag
 """
 
-from tinyrag import TinyRag
+from Rag import TinyRag
 import time
 
 def main():

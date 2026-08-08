@@ -5,7 +5,7 @@ CitationCard widget for displaying structured sources with expandable snippets.
 import customtkinter as ctk
 from typing import List
 from ..theme import Theme
-from tinyrag.core.models import Citation
+from Rag.core.models import Citation
 
 
 class CitationCard(ctk.CTkFrame):

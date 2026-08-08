@@ -73,7 +73,7 @@ class FileManager:
         if not file_id:
             return None, "Invalid Google Drive link format. Direct file links are supported."
 
-        temp_dir = tempfile.mkdtemp(prefix="tinyrag_drive_")
+        temp_dir = tempfile.mkdtemp(prefix="rag_drive_")
         self._temp_dirs.append(temp_dir)
 
         download_url = f"https://drive.google.com/uc?export=download&id={file_id}"

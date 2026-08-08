@@ -2,7 +2,7 @@
 Codebase indexing example for TinyRag
 """
 
-from tinyrag import TinyRag
+from Rag import TinyRag
 import tempfile
 import os
 

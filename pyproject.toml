@@ -3,7 +3,7 @@ requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "tinyrag"
+name = "assignrag"
 version = "0.3.5"
 description = "A minimal Python library for Retrieval-Augmented Generation with codebase indexing and multiple vector store backends"
 readme = "README.md"
@@ -74,14 +74,14 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/DevasisPanda/TinyRag"
-Documentation = "https://github.com/DevasisPanda/TinyRag#readme"
-Repository = "https://github.com/DevasisPanda/TinyRag.git"
-"Bug Tracker" = "https://github.com/DevasisPanda/TinyRag/issues"
-Changelog = "https://github.com/DevasisPanda/TinyRag/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/DevasisPanda/assignRag"
+Documentation = "https://github.com/DevasisPanda/assignRag#readme"
+Repository = "https://github.com/DevasisPanda/assignRag.git"
+"Bug Tracker" = "https://github.com/DevasisPanda/assignRag/issues"
+Changelog = "https://github.com/DevasisPanda/assignRag/blob/main/CHANGELOG.md"
 
 [tool.setuptools]
-packages = ["tinyrag", "tinyrag.core", "tinyrag.vector_stores"]
+packages = ["Rag", "Rag.core", "Rag.vector_stores"]
 
 [tool.setuptools.package-data]
 tinyrag = ["py.typed"]

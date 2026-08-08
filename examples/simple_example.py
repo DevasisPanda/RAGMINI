@@ -1,4 +1,4 @@
-from tinyrag import Provider, TinyRag
+from Rag import Provider, TinyRag
 
 # Example 1: Basic usage without LLM (no API key needed)
 rag = TinyRag()  # Uses default all-MiniLM-L6-v2 embeddings
