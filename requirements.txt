@@ -11,6 +11,10 @@ qdrant-client>=1.9.0
 # Document processing
 PyMuPDF
 
+# Web REST API Server
+fastapi>=0.110.0
+uvicorn>=0.28.0
+
 # GUI Application
 customtkinter>=5.2.0
 tkinterdnd2>=0.3.0
