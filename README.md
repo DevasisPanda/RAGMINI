@@ -14,9 +14,8 @@ A modern, high-performance local Python desktop application built on top of **As
 - ⚖️ **Intelligent Multi-Document Comparison Retrieval**: Automatically detects comparison intent (e.g., *"Compare D.K. Basu and Ashwani Kumar"*) and retrieves balanced context across multiple cases.
 - ⚡ **Local Embeddings**: High-speed ONNX vector embeddings powered by `BAAI/bge-small-en-v1.5` (384 dimensions) via **FastEmbed**.
 - 🗄️ **Qdrant Vector Store**: Cloud and local vector indexing with idempotent deterministic point IDs and clean collection lifecycle management.
-- 🔄 **Automatic LLM Failover**: Primary completions via **OpenRouter API** with automatic fallback to **Google Gemini API** on rate limits (HTTP 429) or timeouts.
-- ☁️ **Google Drive Import**: Paste public Google Drive PDF sharing links to download and index directly.
-- 📌 **Page-Level Citations**: Accurate page number tracking with expandable retrieved text snippets.
+- 🌐 **Web Portfolio REST API**: Built-in FastAPI server (`server.py`) with CORS support, IP rate limiting (15 req/min), input sanitization, and anti-prompt injection rules.
+- ⚡ **Render Free Tier Spin-Down / Cooldown Detection**: Front-end widget auto-wakes Render background instances on page load and displays real-time wakeup indicators (`Render Free Tier Sleeping ~30s`) if the server is spinning up.
 - 🛑 **Strict Unknown Detection**: Prevents hallucinations by returning unanswerable notices when context is missing or low-scoring ($\text{sim} < 0.35$).
 
 ---

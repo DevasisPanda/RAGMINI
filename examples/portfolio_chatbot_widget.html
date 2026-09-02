@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RAGMINI Portfolio Chatbot Widget</title>
+  <style>
+    /* Widget Container */
+    #ragmini-widget {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      z-index: 9999;
+    }
+
+    /* Floating Toggle Button */
+    #ragmini-toggle {
+      background: #2563eb;
+      color: #ffffff;
+      border: none;
+      padding: 14px 20px;
+      border-radius: 30px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    #ragmini-toggle:hover {
+      background: #1d4ed8;
+      transform: translateY(-2px);
+    }
+
+    /* Chat Window */
+    #ragmini-box {
+      display: none;
+      width: 360px;
+      height: 480px;
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      flex-direction: column;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    /* Chat Header */
+    #ragmini-header {
+      background: #1e293b;
+      padding: 14px 16px;
+      color: #f8fafc;
+      font-weight: 600;
+      font-size: 15px;
+      border-bottom: 1px solid #334155;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #ragmini-status-badge {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 12px;
+      background: #334155;
+      color: #94a3b8;
+    }
+
+    #ragmini-status-badge.online {
+      background: #065f46;
+      color: #34d399;
+    }
+
+    #ragmini-status-badge.waking {
+      background: #854d0e;
+      color: #fef08a;
+    }
+
+    #ragmini-status-badge.offline {
+      background: #991b1b;
+      color: #fca5a5;
+    }
+
+    /* Message Area */
+    #ragmini-messages {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 14px;
+    }
+
+    .msg-user {
+      align-self: flex-end;
+      background: #2563eb;
+      color: #ffffff;
+      padding: 10px 14px;
+      border-radius: 14px 14px 2px 14px;
+      max-width: 80%;
+      line-height: 1.4;
+    }
+
+    .msg-bot {
+      align-self: flex-start;
+      background: #1e293b;
+      color: #f1f5f9;
+      padding: 10px 14px;
+      border-radius: 14px 14px 14px 2px;
+      max-width: 85%;
+      border: 1px solid #334155;
+      line-height: 1.4;
+    }
+
+    .msg-alert {
+      align-self: center;
+      background: #451a03;
+      color: #fdba74;
+      border: 1px solid #78350f;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      text-align: center;
+      max-width: 90%;
+    }
+
+    .msg-error {
+      align-self: center;
+      background: #450a0a;
+      color: #fca5a5;
+      border: 1px solid #7f1d1d;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      text-align: center;
+      max-width: 90%;
+    }
+
+    /* Chat Input Bar */
+    #ragmini-input-bar {
+      padding: 12px;
+      background: #1e293b;
+      border-top: 1px solid #334155;
+      display: flex;
+      gap: 8px;
+    }
+
+    #ragmini-input {
+      flex: 1;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 10px;
+      color: #f8fafc;
+      font-size: 14px;
+      outline: none;
+    }
+
+    #ragmini-input:focus {
+      border-color: #2563eb;
+    }
+
+    #ragmini-send {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    #ragmini-send:hover {
+      background: #1d4ed8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- RAGMINI Floating Chatbot Widget -->
+  <div id="ragmini-widget">
+    <div id="ragmini-box">
+      <div id="ragmini-header">
+        <span>🤖 Devasis's AI Assistant</span>
+        <span id="ragmini-status-badge">Checking...</span>
+      </div>
+
+      <div id="ragmini-messages">
+        <div class="msg-bot">
+          👋 Hi! I'm Devasis's AI Assistant. Ask me anything about his skills, experience, GitHub projects, or resume!
+        </div>
+      </div>
+
+      <div id="ragmini-input-bar">
+        <input type="text" id="ragmini-input" placeholder="Ask a question..." maxlength="500">
+        <button id="ragmini-send">Send</button>
+      </div>
+    </div>
+
+    <button id="ragmini-toggle">
+      💬 Chat with AI
+    </button>
+  </div>
+
+  <script>
+    // Config — Replace with your live Render URL in production
+    const BACKEND_BASE_URL = "https://your-ragmini-api.onrender.com"; // e.g., http://localhost:8000
+    const CHAT_ENDPOINT = `${BACKEND_BASE_URL}/api/chat`;
+    const HEALTH_ENDPOINT = `${BACKEND_BASE_URL}/api/health`;
+
+    const toggleBtn = document.getElementById("ragmini-toggle");
+    const chatBox = document.getElementById("ragmini-box");
+    const sendBtn = document.getElementById("ragmini-send");
+    const inputField = document.getElementById("ragmini-input");
+    const messagesContainer = document.getElementById("ragmini-messages");
+    const statusBadge = document.getElementById("ragmini-status-badge");
+
+    let isWakingUp = false;
+
+    // Toggle Chat Window
+    toggleBtn.onclick = () => {
+      const isHidden = chatBox.style.display === "none" || !chatBox.style.display;
+      chatBox.style.display = isHidden ? "flex" : "none";
+      if (isHidden) inputField.focus();
+    };
+
+    // Auto-wake background ping on page load (wakes Render free instance before user types)
+    async function pingBackend() {
+      statusBadge.textContent = "Connecting...";
+      statusBadge.className = "waking";
+
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 6000); // 6s quick ping
+
+        const res = await fetch(HEALTH_ENDPOINT, { signal: controller.signal });
+        clearTimeout(timeoutId);
+
+        if (res.ok) {
+          statusBadge.textContent = "● Online";
+          statusBadge.className = "online";
+        } else {
+          setWakingState();
+        }
+      } catch (e) {
+        setWakingState();
+      }
+    }
+
+    function setWakingState() {
+      statusBadge.textContent = "⚡ Render Sleeping";
+      statusBadge.className = "waking";
+      isWakingUp = true;
+    }
+
+    // Send Message
+    async function handleSend() {
+      const text = inputField.value.trim();
+      if (!text) return;
+
+      // Append User Message
+      appendMessage("user", text);
+      inputField.value = "";
+      scrollToBottom();
+
+      // Indicator if Render free tier is sleeping
+      let sleepTimerNotice = null;
+      if (isWakingUp || statusBadge.className.includes("waking")) {
+        sleepTimerNotice = appendAlert("⚡ Server is waking up from Render free tier sleep (~30s delay). Please wait...");
+      }
+
+      // Thinking indicator
+      const thinkingEl = appendMessage("bot", "<i>Thinking...</i>");
+      scrollToBottom();
+
+      const startTime = Date.now();
+
+      try {
+        // 45s timeout to allow Render free tier wakeup time
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 45000);
+
+        const response = await fetch(CHAT_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: text }),
+          signal: controller.signal
+        });
+
+        clearTimeout(timeoutId);
+        if (sleepTimerNotice) sleepTimerNotice.remove();
+        thinkingEl.remove();
+
+        if (response.ok) {
+          const data = await response.json();
+          statusBadge.textContent = "● Online";
+          statusBadge.className = "online";
+          isWakingUp = false;
+
+          let botReply = data.answer;
+          appendMessage("bot", botReply);
+        } else if (response.status === 429) {
+          appendError("⚠️ Rate limit reached (max 15 questions per minute). Please wait 60 seconds.");
+        } else if (response.status === 503 || response.status === 504) {
+          setWakingState();
+          appendError("⚡ Render instance is in cooldown/sleep mode. Please try again in 15 seconds.");
+        } else {
+          appendError(`⚠️ Server error (${response.status}). Please try again shortly.`);
+        }
+      } catch (error) {
+        if (sleepTimerNotice) sleepTimerNotice.remove();
+        thinkingEl.remove();
+
+        if (error.name === "AbortError") {
+          setWakingState();
+          appendError("⏳ Connection timed out while waking up Render free server. Please click send again now!");
+        } else {
+          statusBadge.textContent = "● Render Down";
+          statusBadge.className = "offline";
+          appendError("⚠️ Unable to connect to backend server. Render free instance may be down or spinning up. Please try again in a few seconds.");
+        }
+      }
+
+      scrollToBottom();
+    }
+
+    function appendMessage(role, text) {
+      const msgDiv = document.createElement("div");
+      msgDiv.className = role === "user" ? "msg-user" : "msg-bot";
+      msgDiv.innerHTML = text;
+      messagesContainer.appendChild(msgDiv);
+      return msgDiv;
+    }
+
+    function appendAlert(text) {
+      const alertDiv = document.createElement("div");
+      alertDiv.className = "msg-alert";
+      alertDiv.innerHTML = text;
+      messagesContainer.appendChild(alertDiv);
+      return alertDiv;
+    }
+
+    function appendError(text) {
+      const errDiv = document.createElement("div");
+      errDiv.className = "msg-error";
+      errDiv.innerHTML = text;
+      messagesContainer.appendChild(errDiv);
+      return errDiv;
+    }
+
+    function scrollToBottom() {
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    sendBtn.onclick = handleSend;
+    inputField.onkeypress = (e) => { if (e.key === "Enter") handleSend(); };
+
+    // Trigger background wakeup ping on page load
+    window.addEventListener("DOMContentLoaded", pingBackend);
+  </script>
+</body>
+</html>
