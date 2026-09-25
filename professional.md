@@ -7,48 +7,108 @@
 - **Email**: devasis.stu.work@gmail.com
 - **Portfolio Repository**: https://github.com/DevasisPanda/RAGMINI
 
+---
+
 ## 2. Professional Summary
-AI Engineer and Lead Architect specializing in high-performance Retrieval-Augmented Generation (RAG), vector databases, ONNX embedding generation, and resilient multi-provider LLM failover systems.
+Devasis Panda is a versatile **AI Engineer, Full-Stack Developer, and Systems Architect** with a rich portfolio of 50+ GitHub repositories. His technical work spans cutting-edge Generative AI and Retrieval-Augmented Generation (RAG), high-throughput backend APIs, microservices, modern TypeScript/React web apps, cross-platform mobile apps (Flutter Lead at GDSC), and autonomous drone robotics.
 
-Developer of **RAGMINI**, an open-source minimal Python RAG framework featuring ONNX vector embeddings, Qdrant Cloud indexing, page-level citation tracking, and automatic OpenRouter -> Google Gemini Flash 2.5 failover.
+He combines deep architectural thinking with hands-on full-stack execution, active algorithmic problem-solving on LeetCode, and a strong track record of open-source leadership and hackathon participation.
 
-## 3. Core Technical Skills
-- **Programming Languages**: Python, JavaScript, TypeScript, SQL, C++
-- **AI & RAG Technologies**: FastEmbed (BAAI/bge-small-en-v1.5), Qdrant Cloud, Vector Search, OpenRouter API, Google Gemini Flash 2.5, PyMuPDF, FastAPI, CustomTkinter
-- **Vector Databases**: Qdrant Cloud, FAISS, ChromaDB, Memory Stores
-- **Backend & Web**: REST APIs, FastAPI, Uvicorn, CORS, Docker, Git, GitHub Actions
+---
 
-## 4. Key Projects
+## 3. Core Technical Skills & Tech Stack
+- **AI, ML & RAG**: Retrieval-Augmented Generation (RAG), FastEmbed (BAAI/bge-small-en-v1.5), Vector Similarity Search, Qdrant Cloud, FAISS, ChromaDB, PyTorch, Scikit-Learn, LLM fine-tuning, OpenAI/OpenRouter APIs, Google Gemini Flash 2.5, PyMuPDF.
+- **Backend & APIs**: Python (FastAPI, Uvicorn), Node.js, Express, JavaScript, C++, REST APIs, Microservices, Socket.io, Docker, Authentication & Access Control.
+- **Frontend & Full-Stack**: TypeScript, JavaScript, React, Next.js, HTML5, CSS3, Tailwind CSS, Responsive Web Design.
+- **Mobile App Development**: Flutter, Dart, Android Development, State Management, Cross-Platform Architecture.
+- **Systems & Autonomous Systems**: Drone obstacle avoidance (IQ Tutorials, ROS/Robotics), Computer Vision & video-to-ASCII processing, C++ Systems.
+- **Databases & Cloud**: Qdrant Cloud, PostgreSQL, MongoDB, SQLite, Render, Vercel, Docker, Git, GitHub Actions.
 
-### RAGMINI — Local PDF RAG & Portfolio AI Chatbot Backend
-- **GitHub Repository**: https://github.com/DevasisPanda/RAGMINI
-- **Architecture**: FastEmbed local embeddings + Qdrant Cloud vector database + OpenRouter primary completion + Google Gemini Flash 2.5 REST failover.
-- **Features**:
-  - FastAPI REST backend (`server.py`) for live portfolio website chat integration.
-  - Multi-document comparison retrieval algorithms.
-  - Page-level citation tracking and strict hallucination prevention.
-  - Desktop CustomTkinter GUI and interactive CLI.
+---
 
-## 5. Education & Achievements
-- Specialized in AI systems design, natural language processing, vector similarity search, and automated LLM API management.
-- Architected enterprise document Q&A pipelines with zero-hallucination fallback mechanisms.
+## 4. Key Projects & Diverse Portfolio
 
-## 6. Why You Should Hire Devasis Panda (Key Strengths & Value)
-- **Deep Technical Expertise in GenAI & RAG**: Devasis doesn't just call APIs; he builds complete, fault-tolerant retrieval pipelines with vector databases, custom chunking, and multi-provider failover.
-- **Production-Ready Mindset**: Focuses on performance, security (rate-limiting, input sanitization, admin authentication), and zero-downtime offline fallbacks.
-- **Strong Problem Solver**: Actively solves algorithmic and data structure challenges on LeetCode and turns complex requirements into clean, modular code.
-- **End-to-End Ownership**: Capable of handling everything from low-level ONNX embeddings and Python backends to REST APIs and frontend chatbot widgets.
-- **Fast Learner & Adaptable**: Rapidly assimilates new AI architectures, frameworks, and deployment platforms (FastAPI, Qdrant, Render, Docker).
+### A. Generative AI, RAG & LLM Systems
+1. **RAGMINI — High-Performance PDF RAG & Portfolio AI Chatbot Engine**
+   - **Repository**: https://github.com/DevasisPanda/RAGMINI
+   - **Tech Stack**: Python, FastEmbed ONNX embeddings, Qdrant Vector Cloud, FastAPI, Google Gemini 2.5 Flash, OpenRouter failover.
+   - **Details**: Full-stack RAG framework featuring local ONNX vector embeddings, multi-document comparison retrieval, page-level citation tracking, zero-downtime offline fallback, and REST endpoints for portfolio integration.
+2. **Ai-saas — All-in-One AI SaaS Platform**
+   - **Repository**: https://github.com/DevasisPanda/Ai-saas
+   - **Tech Stack**: TypeScript, Next.js, OpenAI API, Authentication, Modern Web UI.
+   - **Details**: A comprehensive SaaS platform bringing together multiple generative AI tools, user authentication, subscription workflows, and API billing integrations.
+3. **LLMs-from-scratch & scikit-llm Experiments**
+   - **Repositories**: https://github.com/DevasisPanda/LLMs-from-scratch, https://github.com/DevasisPanda/scikit-llm
+   - **Details**: Deep-dive implementations of transformer architectures, attention mechanisms, and integrating LLM representations directly into traditional scikit-learn machine learning pipelines.
+4. **openclaw — Personal AI Assistant**
+   - **Repository**: https://github.com/DevasisPanda/openclaw
+   - **Details**: Cross-platform, personal AI assistant designed to run across multiple OS platforms and environments.
 
-## 7. Roles & Availability
-- **Target Roles**: AI Engineer, Machine Learning Engineer, Backend Python Developer, Full-Stack AI Engineer.
-- **Availability**: Open for full-time opportunities, high-impact contract roles, and collaborative projects.
-- **Contact & Interview Inquiries**: Reach out directly via email at devasis.stu.work@gmail.com or connect on LinkedIn (https://www.linkedin.com/in/devasispanda).
+### B. Full-Stack Web & Community Applications
+1. **GramSamaj — Community & Civic Portal**
+   - **Repository**: https://github.com/DevasisPanda/GramSamaj
+   - **Tech Stack**: TypeScript, React, Modern Web Frameworks.
+   - **Details**: Digital civic and community platform built to streamline localized information sharing and citizen collaboration.
+2. **TARSCHAT — Real-Time Messaging Application**
+   - **Repository**: https://github.com/DevasisPanda/TARSCHAT
+   - **Tech Stack**: TypeScript, Node.js, Socket.io, WebSockets.
+   - **Details**: Low-latency, real-time messaging application with live socket connections, room channels, and responsive UI.
+3. **SahuTravels — Travel & Tour Booking Platform**
+   - **Repository**: https://github.com/DevasisPanda/SahuTravels
+   - **Tech Stack**: TypeScript, Modern Frontend Architecture.
+   - **Details**: Comprehensive booking and customer portal for travel and transportation logistics.
 
-## 8. Common Questions (FAQ)
-- **Q: Should I hire Devasis Panda?**
-  **A**: Yes, absolutely. Devasis is a dedicated, skilled AI and Backend Engineer with practical experience in building production RAG systems, vector search pipelines, and resilient APIs. He brings strong architectural thinking, fast execution, and a proven track record.
-- **Q: What is Devasis's experience with RAG and LLMs?**
-  **A**: He designed and implemented RAGMINI, an end-to-end RAG system with FastEmbed local embeddings, Qdrant vector storage, and multi-provider failovers (OpenRouter to Gemini Flash 2.5).
-- **Q: How can I contact or hire Devasis?**
-  **A**: You can email him at devasis.stu.work@gmail.com or send a message on LinkedIn at https://www.linkedin.com/in/devasispanda.
+### C. Backend APIs & Microservices
+1. **Finance Access Control API**
+   - **Repository**: https://github.com/DevasisPanda/finance-access-control-api
+   - **Tech Stack**: JavaScript, Node.js, REST API, Security Middleware.
+   - **Details**: Secure financial transaction access point enforcing role-based permissions, API rate limits, and audit logs.
+2. **ProjectMicro — Distributed Microservices Architecture**
+   - **Repository**: https://github.com/DevasisPanda/ProjectMicro
+   - **Tech Stack**: JavaScript, Microservice design patterns.
+   - **Details**: Scalable microservices backend exploring service discovery, decoupling, and high-availability communication.
+
+### D. Mobile App Development & Community Leadership
+1. **Google Developer Student Clubs (GDSC) — Flutter Lead**
+   - Served as Flutter Lead at GDSC, mentoring students, conducting workshops, and leading cross-platform mobile development initiatives.
+2. **Prakriti App (IIT Hyderabad Hackathon Project)**
+   - **Repository**: https://github.com/DevasisPanda/prakriti-app
+   - **Tech Stack**: Flutter, Dart.
+   - **Details**: Mobile application built and demonstrated under high-pressure competitive conditions for the Prakriti Hackathon at IIT Hyderabad.
+3. **FlutterEbookApp & VASTRA-WM**
+   - **Repositories**: https://github.com/DevasisPanda/FlutterEbookApp, https://github.com/DevasisPanda/VASTRA---WM
+   - **Details**: Feature-rich mobile reader for discovering and downloading eBooks, and custom apparel/merchandise management apps built in Dart.
+
+### E. Robotics, Computer Vision & Systems Engineering
+1. **Autonomous Drone Obstacle Avoidance (Avoidance & IQ Tutorials)**
+   - **Repositories**: https://github.com/DevasisPanda/Avoidance, https://github.com/DevasisPanda/iq_tutorials
+   - **Tech Stack**: TypeScript, C++, Robotics algorithms.
+   - **Details**: Autonomous drone navigation and sensor-driven obstacle avoidance pipelines.
+2. **Ascii_art — Real-Time Video-to-ASCII Converter**
+   - **Repository**: https://github.com/DevasisPanda/Ascii_art
+   - **Tech Stack**: Python, OpenCV, Terminal Rendering.
+   - **Details**: Computer vision utility that converts video feeds and images into stylized ASCII art in real-time.
+3. **Bank Management System**
+   - **Repository**: https://github.com/DevasisPanda/Bank_management_system
+   - **Tech Stack**: C++, Object-Oriented Programming (OOP).
+   - **Details**: Robust desktop banking records management engine enforcing memory efficiency and strict OOP principles.
+
+### F. Algorithms, Competitive Programming & Open Source
+- **LeetCode & Competitive Programming**: Active problem solver on LeetCode (https://leetcode.com/u/devasispanda) and Coding Ninjas Competitive Programming.
+- **Open Source Mentorship**: Creator of repositories like `CodeWithMe` and `python-cpp-programs-projects` to mentor beginners and guide contributions during global initiatives like Hacktoberfest.
+
+---
+
+## 5. Why You Should Hire Devasis Panda (Key Strengths & Differentiators)
+1. **Exceptional Technical Diversity**: Unlike specialists who only know one narrow slice of tech, Devasis has proven, hands-on production code across AI/RAG, full-stack TypeScript, backend microservices, mobile Flutter apps, and C++ systems.
+2. **Deep GenAI Engineering, Not Just Wrapper Scripts**: He builds complete retrieval engines from scratch, mastering vector math, ONNX runtimes, semantic chunking, and multi-provider failover.
+3. **Production & Reliability Focus**: Prioritizes fault-tolerance, zero-downtime offline fallbacks, rate limiting, and defensive security.
+4. **Strong Algorithmic Foundation**: Deep understanding of data structures, algorithms, and computational efficiency through continuous LeetCode problem solving.
+5. **Proven Collaborative & Leadership Experience**: Experience as Flutter Lead at GDSC, hackathon participant (IIT Hyderabad), and open-source mentor.
+
+---
+
+## 6. Roles & Availability
+- **Target Roles**: AI Engineer, GenAI / RAG Developer, Backend Python/TypeScript Engineer, Full-Stack Developer, Machine Learning Engineer.
+- **Availability**: Open for full-time employment, high-impact contract roles, and technical collaborations.
+- **Contact**: Reach out directly at devasis.stu.work@gmail.com or connect via LinkedIn (https://www.linkedin.com/in/devasispanda).
