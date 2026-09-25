@@ -32,3 +32,23 @@ Developer of **RAGMINI**, an open-source minimal Python RAG framework featuring 
 ## 5. Education & Achievements
 - Specialized in AI systems design, natural language processing, vector similarity search, and automated LLM API management.
 - Architected enterprise document Q&A pipelines with zero-hallucination fallback mechanisms.
+
+## 6. Why You Should Hire Devasis Panda (Key Strengths & Value)
+- **Deep Technical Expertise in GenAI & RAG**: Devasis doesn't just call APIs; he builds complete, fault-tolerant retrieval pipelines with vector databases, custom chunking, and multi-provider failover.
+- **Production-Ready Mindset**: Focuses on performance, security (rate-limiting, input sanitization, admin authentication), and zero-downtime offline fallbacks.
+- **Strong Problem Solver**: Actively solves algorithmic and data structure challenges on LeetCode and turns complex requirements into clean, modular code.
+- **End-to-End Ownership**: Capable of handling everything from low-level ONNX embeddings and Python backends to REST APIs and frontend chatbot widgets.
+- **Fast Learner & Adaptable**: Rapidly assimilates new AI architectures, frameworks, and deployment platforms (FastAPI, Qdrant, Render, Docker).
+
+## 7. Roles & Availability
+- **Target Roles**: AI Engineer, Machine Learning Engineer, Backend Python Developer, Full-Stack AI Engineer.
+- **Availability**: Open for full-time opportunities, high-impact contract roles, and collaborative projects.
+- **Contact & Interview Inquiries**: Reach out directly via email at devasis.stu.work@gmail.com or connect on LinkedIn (https://www.linkedin.com/in/devasispanda).
+
+## 8. Common Questions (FAQ)
+- **Q: Should I hire Devasis Panda?**
+  **A**: Yes, absolutely. Devasis is a dedicated, skilled AI and Backend Engineer with practical experience in building production RAG systems, vector search pipelines, and resilient APIs. He brings strong architectural thinking, fast execution, and a proven track record.
+- **Q: What is Devasis's experience with RAG and LLMs?**
+  **A**: He designed and implemented RAGMINI, an end-to-end RAG system with FastEmbed local embeddings, Qdrant vector storage, and multi-provider failovers (OpenRouter to Gemini Flash 2.5).
+- **Q: How can I contact or hire Devasis?**
+  **A**: You can email him at devasis.stu.work@gmail.com or send a message on LinkedIn at https://www.linkedin.com/in/devasispanda.

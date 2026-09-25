@@ -33,7 +33,8 @@ class RagEngine:
         max_workers: Optional[int] = None,
         system_prompt: Optional[str] = None,
         enable_cache: bool = False,
-        cache_dir: str = ".rag_cache"
+        cache_dir: str = ".rag_cache",
+        min_similarity_threshold: float = 0.35
     ):
         """Initialize RagEngine with optional provider and vector store
         
@@ -47,6 +48,7 @@ class RagEngine:
             system_prompt: Custom system prompt for LLM chat
             enable_cache: Deprecated / unused
             cache_dir: Deprecated / unused
+            min_similarity_threshold: Minimum cosine similarity score required for answering (default 0.35)
         """
         # Initialize provider or create default one
         if provider is None:
@@ -57,6 +59,7 @@ class RagEngine:
         self.chunk_size = chunk_size
         self.chunk_overlap = chunk_overlap
         self.max_workers = max_workers
+        self.min_similarity_threshold = min_similarity_threshold
         self._lock = Lock()  # For thread-safe operations
         
         # Set system prompt (assignment compliant default)
@@ -781,9 +784,19 @@ class RagEngine:
         # 5. Better Unknown Detection (Requirement 4)
         # Check best similarity score in selected chunks
         max_sim = max((s for _, s, _ in selected_chunks), default=0.0)
-        if not selected_chunks or max_sim < 0.35:
+        
+        q_lower = query.lower()
+        is_portfolio_eval = any(k in q_lower for k in [
+            "hire", "recruit", "candidate", "fit", "work with", "strength",
+            "devasis", "panda", "about him", "about you", "who is", "who are you",
+            "why choose", "why should", "experience", "skills", "projects", "contact",
+            "portfolio", "resume", "background", "good fit", "hire him", "hire devasis"
+        ])
+        effective_threshold = 0.15 if is_portfolio_eval else self.min_similarity_threshold
+
+        if not selected_chunks or max_sim < effective_threshold:
             if verbose:
-                print(f"[DEBUG] Maximum similarity score ({max_sim:.4f}) is below threshold 0.35. Marking query UNKNOWN.")
+                print(f"[DEBUG] Maximum similarity score ({max_sim:.4f}) is below threshold {effective_threshold:.2f}. Marking query UNKNOWN.")
             return QueryResult(
                 question=query,
                 answer="The information is not available in the supplied documents.",
@@ -827,7 +840,7 @@ class RagEngine:
                 "content": (
                     f"Context from documents:\n{context}\n\n"
                     f"Question: {query}\n\n"
-                    "Instructions: Read the context carefully. If the answer to the question can be found or derived from any of the context sources above, provide a clear, accurate answer citing the details. If the answer cannot be found in the provided context, respond exactly: 'The information is not available in the supplied documents.'"
+                    "Instructions: Read the context carefully. If the answer to the question can be found, synthesized, or derived from any of the context sources above, provide a clear, accurate, and helpful answer citing the details. If the answer cannot be found in the provided context and is completely unrelated, respond: 'The information is not available in the supplied documents.'"
                 ),
             },
         ]
