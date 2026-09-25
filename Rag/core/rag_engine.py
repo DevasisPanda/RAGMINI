@@ -34,7 +34,8 @@ class RagEngine:
         system_prompt: Optional[str] = None,
         enable_cache: bool = False,
         cache_dir: str = ".rag_cache",
-        min_similarity_threshold: float = 0.35
+        min_similarity_threshold: float = 0.35,
+        strict_unknown_mode: bool = False
     ):
         """Initialize RagEngine with optional provider and vector store
         
@@ -49,6 +50,7 @@ class RagEngine:
             enable_cache: Deprecated / unused
             cache_dir: Deprecated / unused
             min_similarity_threshold: Minimum cosine similarity score required for answering (default 0.35)
+            strict_unknown_mode: Whether to enforce rigid phrase-based unknown rejections
         """
         # Initialize provider or create default one
         if provider is None:
@@ -60,6 +62,7 @@ class RagEngine:
         self.chunk_overlap = chunk_overlap
         self.max_workers = max_workers
         self.min_similarity_threshold = min_similarity_threshold
+        self.strict_unknown_mode = strict_unknown_mode
         self._lock = Lock()  # For thread-safe operations
         
         # Set system prompt (assignment compliant default)
@@ -669,7 +672,7 @@ class RagEngine:
                 is_answerable=True,
             )
 
-        if is_comp and len(detected_docs) == 0:
+        if is_comp and len(detected_docs) == 0 and self.strict_unknown_mode:
             if verbose:
                 print("[DEBUG] Comparison Mode requested but no matching legal documents detected in query. Marking UNKNOWN.")
             return QueryResult(
@@ -781,28 +784,29 @@ class RagEngine:
                 if len(selected_chunks) >= k:
                     break
 
-        # 5. Better Unknown Detection (Requirement 4)
+        # 5. Unknown Detection
         # Check best similarity score in selected chunks
         max_sim = max((s for _, s, _ in selected_chunks), default=0.0)
-        
-        q_lower = query.lower()
-        is_portfolio_eval = any(k in q_lower for k in [
-            "hire", "recruit", "candidate", "fit", "work with", "strength",
-            "devasis", "panda", "about him", "about you", "who is", "who are you",
-            "why choose", "why should", "experience", "skills", "projects", "contact",
-            "portfolio", "resume", "background", "good fit", "hire him", "hire devasis"
-        ])
-        effective_threshold = 0.15 if is_portfolio_eval else self.min_similarity_threshold
 
-        if not selected_chunks or max_sim < effective_threshold:
-            if verbose:
-                print(f"[DEBUG] Maximum similarity score ({max_sim:.4f}) is below threshold {effective_threshold:.2f}. Marking query UNKNOWN.")
-            return QueryResult(
-                question=query,
-                answer="The information is not available in the supplied documents.",
-                citations=[],
-                is_answerable=False,
-            )
+        if self.strict_unknown_mode:
+            if not selected_chunks or max_sim < self.min_similarity_threshold:
+                if verbose:
+                    print(f"[DEBUG] Maximum similarity score ({max_sim:.4f}) is below threshold {self.min_similarity_threshold:.2f}. Marking query UNKNOWN.")
+                return QueryResult(
+                    question=query,
+                    answer="The information is not available in the supplied documents.",
+                    citations=[],
+                    is_answerable=False,
+                )
+        else:
+            # Portfolio Mode: As long as candidate chunks exist, pass them to LLM for contextual reasoning
+            if not selected_chunks or max_sim < 0.05:
+                return QueryResult(
+                    question=query,
+                    answer="The information is not available in the supplied documents.",
+                    citations=[],
+                    is_answerable=False,
+                )
 
         if verbose:
             print(f"\n[DEBUG] Selected Chunks Count: {len(selected_chunks)}")
@@ -840,22 +844,25 @@ class RagEngine:
                 "content": (
                     f"Context from documents:\n{context}\n\n"
                     f"Question: {query}\n\n"
-                    "Instructions: Read the context carefully. If the answer to the question can be found, synthesized, or derived from any of the context sources above, provide a clear, accurate, and helpful answer citing the details. If the answer cannot be found in the provided context and is completely unrelated, respond: 'The information is not available in the supplied documents.'"
+                    "Instructions: Answer the user's question clearly, naturally, and accurately. "
+                    "Use the provided context as ground truth about Devasis Panda. You may synthesize, explain, and draw reasonable professional conclusions from his skills, experience, and projects. "
+                    "Only state that the information is not available if the question is completely unrelated to Devasis, his career, software engineering, or technical background."
                 ),
             },
         ]
 
-        answer = self.provider.chat_completion(messages, temperature=0.2)
+        answer = self.provider.chat_completion(messages, temperature=0.3)
 
-        # 6. Post-generation Unknown check
-        unanswerable_phrase = "the information is not available in the supplied documents"
-        if unanswerable_phrase in answer.lower() or "information is not available" in answer.lower():
-            return QueryResult(
-                question=query,
-                answer="The information is not available in the supplied documents.",
-                citations=[],
-                is_answerable=False,
-            )
+        # 6. Post-generation Unknown check (only enforced if strict_unknown_mode is active)
+        if self.strict_unknown_mode:
+            unanswerable_phrase = "the information is not available in the supplied documents"
+            if unanswerable_phrase in answer.lower():
+                return QueryResult(
+                    question=query,
+                    answer="The information is not available in the supplied documents.",
+                    citations=[],
+                    is_answerable=False,
+                )
 
         return QueryResult(
             question=query,
